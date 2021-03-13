@@ -1,0 +1,33 @@
+FORMAT: 1A
+HOST: https://polls.apiblueprint.org/
+
+# DCM api
+
+DCM의 백엔드 api를 제공합니다.
+
+# Group 유저 정보
+## Users [/users]
+### Get user [GET /users/{id}]
++ Response 200 (application/json)
+### Create user [POST]
++ Response 200 (application/json)
+
+# Group 프로젝트
+## Projects [/projects]
+### Get project [GET /projects/{id}]
++ Response 200 (application/json)
+### Create project [POST]
++ Response 200 (application/json)
+
+# Group 유저 - 프로젝트
+## Members [/projects/{id}/members]
+### Get membsers [GET]
++ Response 200 (application/json)
+
+## User's projects [/users/{id}/projects]
+### List all user's projects [GET]
++ Response 200 (application/json)
+### participate in a project [POST]
++ Response 200 (application/json)
+
+# 프로젝트 구성 요소
