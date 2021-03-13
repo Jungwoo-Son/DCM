@@ -5,6 +5,12 @@ HOST: https://polls.apiblueprint.org/
 
 DCM의 백엔드 api를 제공합니다.
 
+# Group 계정 관련
+## Login [POST /login]
++ Response 200 (application/json)
+## Register [POST /register]
++ Response 200 (application/json)
+
 # Group 유저 정보
 ## Users [/users]
 ### Get user [GET /users/{id}]
@@ -30,4 +36,16 @@ DCM의 백엔드 api를 제공합니다.
 ### participate in a project [POST]
 + Response 200 (application/json)
 
-# 프로젝트 구성 요소
+# Group 프로젝트 구성 요소
+## Components [/projects/{id}/components]
+### List all components [GET]
++ Response 200 (application/json)
+### Create a new component [POST]
++ Response 200 (application/json)
+## dependences between components [/projects/{project_id}/components/{component_id}/dependencies]
+### List all dependencies of the component [GET]
++ Response 200 (application/json)
+### Create a new dependecy between components [POST]
++ Response 200 (application/json)
+### DELETE the dependencies [DELETE /projects/{project_id}/components/{component_id}/dependencies/{object_id}]
++ Response 200 (application/json)
