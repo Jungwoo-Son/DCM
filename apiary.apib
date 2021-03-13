@@ -10,7 +10,7 @@ DCM의 백엔드 api를 제공합니다.
 + Attributes
     + id (string, required)
     + pw (string, required)
-+ Request login (application/json)
++ Request (application/json)
 
         {
             "id": "asdf",
@@ -31,12 +31,13 @@ DCM의 백엔드 api를 제공합니다.
 + Attributes
     + id (string, required)
     + pw (string, required)
-+ Request register (application/json)
 
-        {
-            "id": "asdf",
-            "pw": "password"
-        }
+    + Body
+    
+            {
+                "id": "asdf",
+                "pw": "password"
+            }
 + Response 200 (application/json)
 
 
@@ -45,6 +46,12 @@ DCM의 백엔드 api를 제공합니다.
 ### Get user [GET /users/{id}]
 + Parameters
     + id (string) - 유저 아이디
+
++ Request
+    + header
+        
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhY2Nlc3MgdG9rZW4iLCJuYW1lIjoiYXNkZiIsImV4cCI6MjUxNjIzOTAyMn0.aJX_LeuqItLwa2sG1ZKvyEgROeTE2zwIyS_C6yQMuTw
+
 
 + Response 200 (application/json)
     + Attributes
@@ -63,31 +70,186 @@ DCM의 백엔드 api를 제공합니다.
 # Group 프로젝트
 ## Projects [/projects]
 ### Get project [GET /projects/{id}]
++ Parameters
+    + id (number, required) - 프로젝트 id
+
++ Request
+    + header
+        
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhY2Nlc3MgdG9rZW4iLCJuYW1lIjoiYXNkZiIsImV4cCI6MjUxNjIzOTAyMn0.aJX_LeuqItLwa2sG1ZKvyEgROeTE2zwIyS_C6yQMuTw
+
 + Response 200 (application/json)
+    + Attributes
+        + id (number) - 프로젝트 id
+        + name (string) - 프로젝트 이름
+        + invitation_code (string) - 프로젝트 초대 코드
+    + Body
+        
+            {
+                "id": 42,
+                "name": "DCM",
+                "invitation_code": "8D4FC"
+            }
+
 ### Create project [POST]
++ Attributes
+    + name (string, required) - 프로젝트 이름
+
++ Request (application/json)
+    + header
+        
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhY2Nlc3MgdG9rZW4iLCJuYW1lIjoiYXNkZiIsImV4cCI6MjUxNjIzOTAyMn0.aJX_LeuqItLwa2sG1ZKvyEgROeTE2zwIyS_C6yQMuTw
+    
+    + Body
+        
+            {
+                "name": "DCM"
+            }
+
 + Response 200 (application/json)
 
 # Group 유저 - 프로젝트
 ## Members [/projects/{id}/members]
 ### Get membsers [GET]
++ Parameters
+    + id (string) - 프로젝트 id
+
++ Request (application/json)
+    + header
+        
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhY2Nlc3MgdG9rZW4iLCJuYW1lIjoiYXNkZiIsImV4cCI6MjUxNjIzOTAyMn0.aJX_LeuqItLwa2sG1ZKvyEgROeTE2zwIyS_C6yQMuTw
+    
 + Response 200 (application/json)
+    
+        [
+            {
+                "id": "asdf",
+                "name": "손정우",
+                "contact": "jungwoo9356@gmail.com"
+            }   
+        ]
 
 ## User's projects [/users/{id}/projects]
++ Parameters
+    + id (string) - 유저 아이디
+
 ### List all user's projects [GET]
++ Request (application/json)
+    + header
+        
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhY2Nlc3MgdG9rZW4iLCJuYW1lIjoiYXNkZiIsImV4cCI6MjUxNjIzOTAyMn0.aJX_LeuqItLwa2sG1ZKvyEgROeTE2zwIyS_C6yQMuTw
+
 + Response 200 (application/json)
+        
+        [
+            {
+                "id": 42,
+                "name": "DCM",
+                "invitation_code": "8D4FC"
+            }
+        ]    
+
 ### participate in a project [POST]
++ Attributes
+    + user (string, required) - 유저 아이디
+    + project (number, required) - 프로젝트 아이디
 + Response 200 (application/json)
 
 # Group 프로젝트 구성 요소
 ## Components [/projects/{id}/components]
++ Parameters
+    + id (number) - 프로젝트 아이디
+
 ### List all components [GET]
++ Request (application/json)
+    + header
+        
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhY2Nlc3MgdG9rZW4iLCJuYW1lIjoiYXNkZiIsImV4cCI6MjUxNjIzOTAyMn0.aJX_LeuqItLwa2sG1ZKvyEgROeTE2zwIyS_C6yQMuTw
+
 + Response 200 (application/json)
+    + Attributes
+        + id (number) - 구성 요소 아이디
+        + name (string) - 구성 요소 이름
+        + manager (string) - 담당자 유저 아이디
+    + Body
+    
+            {
+                "id": 32,
+                "name": "요소1",
+                "manager": "asdf"
+            }
+
 ### Create a new component [POST]
++ Attributes
+    + name (string, required) - 구성 요소 이름
+    + manager (string, required) - 담당자 유저 아이디
+
++ Request (application/json)
+    + header
+        
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhY2Nlc3MgdG9rZW4iLCJuYW1lIjoiYXNkZiIsImV4cCI6MjUxNjIzOTAyMn0.aJX_LeuqItLwa2sG1ZKvyEgROeTE2zwIyS_C6yQMuTw
+    
+    + Body
+        
+            {
+                "name": "요소1",
+                "manager": "asdf"
+            }
+
+
 + Response 200 (application/json)
+
 ## dependences between components [/projects/{project_id}/components/{component_id}/dependencies]
++ Parameters
+    + project_id (number) - 프로젝트 아이디
+    + component_id (number) - 구성 요소 아이디
+
 ### List all dependencies of the component [GET]
++ Request (application/json)
+    + header
+        
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhY2Nlc3MgdG9rZW4iLCJuYW1lIjoiYXNkZiIsImV4cCI6MjUxNjIzOTAyMn0.aJX_LeuqItLwa2sG1ZKvyEgROeTE2zwIyS_C6yQMuTw
+            
 + Response 200 (application/json)
+    + Attributes
+        + id (number) - 구성 요소 아이디
+        + name (string) - 구성 요소 이름
+        + manager (string) - 담당자 유저 아이디
+    + Body
+        
+            [
+                {
+                    "id": 32
+                    "name": "요소1",
+                    "manager": "asdf"
+                }   
+            ]
+
 ### Create a new dependecy between components [POST]
++ Attributes
+    + subject (number, required) - 의존 주체 구성 요소 아이디 
+    + object (number, required) - 의존 대상 구성 요소 아이디
+    
++ Request (application/json)
+    + header
+        
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhY2Nlc3MgdG9rZW4iLCJuYW1lIjoiYXNkZiIsImV4cCI6MjUxNjIzOTAyMn0.aJX_LeuqItLwa2sG1ZKvyEgROeTE2zwIyS_C6yQMuTw
+    
+    + Body
+    
+            {
+                "subject": 32,
+                "object": 65,
+            }
+            
 + Response 200 (application/json)
 ### DELETE the dependencies [DELETE /projects/{project_id}/components/{component_id}/dependencies/{object_id}]
++ Parameters
+    + object_id (number) - 의존 대상 구성 요소 아이디
+
++ Request (application/json)
+    + header
+        
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhY2Nlc3MgdG9rZW4iLCJuYW1lIjoiYXNkZiIsImV4cCI6MjUxNjIzOTAyMn0.aJX_LeuqItLwa2sG1ZKvyEgROeTE2zwIyS_C6yQMuTw
+
 + Response 200 (application/json)
