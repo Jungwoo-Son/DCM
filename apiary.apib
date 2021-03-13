@@ -7,9 +7,38 @@ DCM의 백엔드 api를 제공합니다.
 
 # Group 계정 관련
 ## Login [POST /login]
++ Attributes
+    + id (string, required)
+    + pw (string, required)
++ Request login (application/json)
+
+        {
+            "id": "asdf",
+            "pw": "password"
+        }
+
 + Response 200 (application/json)
+    + Attribute
+        + access_token (string) - jwt로 구성된 엑세스 토큰입니다.
+    + Body
+    
+            {
+                "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhY2Nlc3MgdG9rZW4iLCJuYW1lIjoiYXNkZiIsImV4cCI6MjUxNjIzOTAyMn0.aJX_LeuqItLwa2sG1ZKvyEgROeTE2zwIyS_C6yQMuTw"
+            }
+
+
 ## Register [POST /register]
++ Attributes
+    + id (string, required)
+    + pw (string, required)
++ Request register (application/json)
+
+        {
+            "id": "asdf",
+            "pw": "password"
+        }
 + Response 200 (application/json)
+
 
 # Group 유저 정보
 ## Users [/users]
