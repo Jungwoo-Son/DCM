@@ -43,9 +43,22 @@ DCM의 백엔드 api를 제공합니다.
 # Group 유저 정보
 ## Users [/users]
 ### Get user [GET /users/{id}]
++ Parameters
+    + id (string) - 유저 아이디
+
 + Response 200 (application/json)
-### Create user [POST]
-+ Response 200 (application/json)
+    + Attributes
+        + id (string) - 유저 아이디
+        + name (string) - 유저 이름
+        + contact (string) - 유저 연락처(전화번호, 이메일 등)
+    + Body
+    
+            {
+                "id": "asdf",[]
+                "name": "손정우",
+                "contact": "jungwoo9356@gmail.com"
+            }
+
 
 # Group 프로젝트
 ## Projects [/projects]
