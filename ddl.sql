@@ -41,10 +41,10 @@ CREATE TABLE IF NOT EXISTS component (
 CREATE TABLE IF NOT EXISTS dependencies (
 	id 			INT NOT NULL AUTO_INCREMENT,
 	subject		INT NOT NULL,
-    object	INT NOT NULL,
+    target	INT NOT NULL,
     
     FOREIGN KEY(subject) REFERENCES component(id),
-    FOREIGN KEY(object) REFERENCES component(id),
+    FOREIGN KEY(target) REFERENCES component(id),
     PRIMARY KEY(id)
 );
 
