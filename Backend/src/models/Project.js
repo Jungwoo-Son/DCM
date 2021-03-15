@@ -6,7 +6,11 @@ class Project {
             name: this.name,
         };
     }
-
+    valueOf(){
+        return {
+            name: this.name,
+        }
+    }
     getName() {
         return this.name;
     }
