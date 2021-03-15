@@ -12,6 +12,9 @@ describe('spec of UserRepo', () => {
     afterEach(async () => {
         await transaction.rollback();
     });
+    afterAll(async () => {
+        sequelize.close();
+    });
     it('should find all users from db', async () => {
         const users = await UserRepo.findAllUsers(transaction);
         expect(users).toEqual(simple_db_status);
