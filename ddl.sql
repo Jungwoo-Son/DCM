@@ -9,7 +9,6 @@ DROP TABLE IF EXISTS component;
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS project;
 
-show tables;
 
 CREATE TABLE IF NOT EXISTS project (
 	id INT NOT NULL AUTO_INCREMENT,
@@ -39,13 +38,12 @@ CREATE TABLE IF NOT EXISTS component (
 );
 
 CREATE TABLE IF NOT EXISTS dependencies (
-	id 			INT NOT NULL AUTO_INCREMENT,
 	subject		INT NOT NULL,
     target	INT NOT NULL,
     
     FOREIGN KEY(subject) REFERENCES component(id),
     FOREIGN KEY(target) REFERENCES component(id),
-    PRIMARY KEY(id)
+    PRIMARY KEY(subject, target)
 );
 
 CREATE TABLE IF NOT EXISTS  user_project(
