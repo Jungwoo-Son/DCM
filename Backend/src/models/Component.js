@@ -9,6 +9,13 @@ class Component {
             project: this.project_id,
         };
     }
+    valueOf() {
+        return {
+            name: this.name,
+            manager: this.manager_id,
+            project: this.project_id,
+        };
+    }
     getId() {
         return this.id;
     }
