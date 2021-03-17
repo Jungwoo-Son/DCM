@@ -8,7 +8,13 @@ class User {
             contact: this.contact,
         };
     }
-
+    valueOf() {
+        return {
+            id: this.id,
+            name: this.name,
+            contact: this.contact,
+        };
+    }
     getId() {
         return this.id;
     }
@@ -30,18 +36,13 @@ class User {
 }
 
 class UserBuilder extends ModelBuilder{
-    constructor(name, contact) {
+    constructor(id, name, contact) {
         super(User);
         this.name = name;
         this.contact = contact;
-        this.id = null;
+        this.id = id;
         this.pw = null;
         this.projects = [];
-    }
-
-    setId(id) {
-        this.id = id;
-        return this;
     }
     setPw(pw) {
         this.pw = pw;

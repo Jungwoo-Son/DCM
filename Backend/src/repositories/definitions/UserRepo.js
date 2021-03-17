@@ -27,8 +27,7 @@ class UserRepo extends Model {
     }
 }
 function convertSequelizeModelToModel(sequelize_user) {
-    return new UserBuilder(sequelize_user.name, sequelize_user.contact)
-        .setId(sequelize_user.id)
+    return new UserBuilder(sequelize_user.id, sequelize_user.name, sequelize_user.contact)
         .setPw(sequelize_user.pw)
         .build();
 }
