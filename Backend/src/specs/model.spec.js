@@ -2,8 +2,7 @@ const { ProjectBuilder } = require('../models/Project');
 const { UserBuilder } = require('../models/User');
 const { ComponentBuilder } = require('../models/Component');
 
-const user = new UserBuilder('홍길동', '010-1234-5678')
-    .setId('hong')
+const user = new UserBuilder('hong', '홍길동', '010-1234-5678')
     .setPw('1234')
     .build();
 const project = new ProjectBuilder('프로젝트')
