@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest specs/"
+    "test": "jest specs/",
+    "test-service": "jest specs/services/",
+    "test-db-integration": "jest specs/repositories"
   },
   "keywords": [],
   "author": "",
