@@ -3,7 +3,9 @@ class FakeResponse {
         this.result = {};
     }
     send(object) {
-        this.result = object.toJSON();
+        if(object) {
+            this.result = object.toJSON();
+        }
     }
 }
 
