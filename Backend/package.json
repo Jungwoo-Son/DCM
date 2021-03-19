@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest specs/",
+    "test-controller": "jest specs/controllers/",
     "test-service": "jest specs/services/",
     "test-db-integration": "jest specs/repositories"
   },
