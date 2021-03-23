@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest specs/",
+    "test-authorization": "jest specs/Authorization.spec.js",
     "test-controller": "jest specs/controllers/",
     "test-service": "jest specs/services/",
     "test-db-integration": "jest specs/repositories"
@@ -19,6 +20,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.2.5",
     "sequelize": "^6.5.0"
   }
