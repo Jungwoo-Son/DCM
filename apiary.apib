@@ -26,7 +26,17 @@ DCM의 백엔드 api를 제공합니다.
                 "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhY2Nlc3MgdG9rZW4iLCJuYW1lIjoiYXNkZiIsImV4cCI6MjUxNjIzOTAyMn0.aJX_LeuqItLwa2sG1ZKvyEgROeTE2zwIyS_C6yQMuTw"
             }
 
-
+## Refresh [POST /refresh]
++ Request
+    + header
+    
+            RefreshToken: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhY2Nlc3MgdG9rZW4iLCJuYW1lIjoiYXNkZiIsImV4cCI6MjUxNjIzOTAyMn0.aJX_LeuqItLwa2sG1ZKvyEgROeTE2zwIyS_C6yQMuTw
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "access_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhY2Nlc3MgdG9rZW4iLCJuYW1lIjoiYXNkZiIsImV4cCI6MjUxNjIzOTAyMn0.aJX_LeuqItLwa2sG1ZKvyEgROeTE2zwIyS_C6yQMuTw"
+            }
 ## Register [POST /register]
 + Attributes
     + id (string, required)
