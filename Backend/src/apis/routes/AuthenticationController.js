@@ -1,6 +1,6 @@
 const { RefreshToken } = require('../../authentication');
 const AuthenticationService = require('../../services/AuthenticationService');
-
+const UserService = require('../../services/UserService');
 
 const AuthenticationControllers = {};
 
@@ -15,6 +15,13 @@ AuthenticationControllers.refresh = async (req, res, next) => {
 
     const access_token = await AuthenticationService.refresh(refresh_token);
     res.send(access_token);
+};
+
+AuthenticationControllers.register = async (req, res, next) => {
+    const { id, pw, name, contact } = req.body;
+    await UserService.createNewUser(id, pw, name, contact);
+
+    res.send();
 };
 
 module.exports = AuthenticationControllers;
