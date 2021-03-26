@@ -16,6 +16,7 @@ const AuthenticationControllers = require('../../apis/routes/AuthenticationContr
 
 const RequestBuilder = require('./FakeRequest');
 const Response = require('./FakeResponse');
+const { UserBuilder } = require('../../models/User');
 
 
 describe('spec of Authentication Controller', () => {
@@ -42,4 +43,18 @@ describe('spec of Authentication Controller', () => {
             access_token: sample_stringed_access_token
         });
     });
+    it('should make a new user register', async () => {
+        const req = new RequestBuilder().setBody({
+            id: 'zxcv',
+            pw: 'poiu',
+            contact: 'zxcv@email.com',
+            name: '훈이',
+        }).build();
+        const res = new Response;
+        await AuthenticationControllers.register(req, res);
+
+        const new_user = UserRepo.findById('zxcv');
+        const expected_user = new UserBuilder('zxcv', '훈이', 'zxcv@email.com').setPw('poiu').build();
+        expect(new_user.valueOf()).toEqual(expected_user.valueOf());
+    }); 
 });
