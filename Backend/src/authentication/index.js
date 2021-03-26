@@ -25,12 +25,12 @@ class AccessToken {
         return access_token;
     }
     toJSON() {
-        return this.token;
+        return {
+            access_token: this.token
+        };
     }
     getUserId() {
-        return {
-            access_token: this.user_id
-        };
+        return this.user_id;
     }
     toString() {
         return this.token;
@@ -81,7 +81,7 @@ class Tokens {
 
     toJSON() {
         const result = {};
-        for(const token in this.tokens) {
+        for(const token of this.tokens) {
             result[token.sub] = token.token;
         }
         return result;
