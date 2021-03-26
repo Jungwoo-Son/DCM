@@ -26,18 +26,22 @@ DCM의 백엔드 api를 제공합니다.
                 "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhY2Nlc3MgdG9rZW4iLCJuYW1lIjoiYXNkZiIsImV4cCI6MjUxNjIzOTAyMn0.aJX_LeuqItLwa2sG1ZKvyEgROeTE2zwIyS_C6yQMuTw"
             }
 
-
+## Refresh [POST /refresh]
++ Attributes
+    + refresh_token (string, required)
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "access_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhY2Nlc3MgdG9rZW4iLCJuYW1lIjoiYXNkZiIsImV4cCI6MjUxNjIzOTAyMn0.aJX_LeuqItLwa2sG1ZKvyEgROeTE2zwIyS_C6yQMuTw"
+            }
 ## Register [POST /register]
 + Attributes
     + id (string, required)
     + pw (string, required)
-
-    + Body
+    + contatct (string, required)
+    + name (string, required)
     
-            {
-                "id": "asdf",
-                "pw": "password"
-            }
 + Response 200 (application/json)
 
 
