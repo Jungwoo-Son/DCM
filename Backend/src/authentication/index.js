@@ -5,6 +5,7 @@ class AccessToken {
     constructor(user_id) {
         if (user_id) {
             this.user_id = user_id;
+            this.sub = 'access_token';
             this.token = JWT.sign({
                 sub: 'access_token',
                 user_id,
@@ -20,10 +21,16 @@ class AccessToken {
         const access_token = new AccessToken();
         access_token.token = token;
         access_token.user_id = payload.user_id;
+        access_token.sub = payload.sub;
         return access_token;
     }
+    toJSON() {
+        return this.token;
+    }
     getUserId() {
-        return this.user_id;
+        return {
+            access_token: this.user_id
+        };
     }
     toString() {
         return this.token;
@@ -34,6 +41,7 @@ class RefreshToken {
     constructor(user_id) {
         if (user_id) {
             this.user_id = user_id;
+            this.sub = 'refresh_token';
             this.token = JWT.sign({
                 sub: 'refresh_token',
                 user_id,
@@ -50,7 +58,13 @@ class RefreshToken {
         const refresh_token = new RefreshToken();
         refresh_token.token = token;
         refresh_token.user_id = payload.user_id;
+        refresh_token.sub = payload.sub;
         return refresh_token;
+    }
+    toJSON() {
+        return {
+            refresh_token: this.token
+        };
     }
     getUserId() {
         return this.user_id;
@@ -59,7 +73,23 @@ class RefreshToken {
         return this.token;
     }
 }
+
+class Tokens {
+    constructor(tokens) {
+        this.tokens = tokens;
+    }
+
+    toJSON() {
+        const result = {};
+        for(const token in this.tokens) {
+            result[token.sub] = token.token;
+        }
+        return result;
+    }
+}
+
 module.exports = {
     AccessToken,
     RefreshToken,
+    Tokens,
 };

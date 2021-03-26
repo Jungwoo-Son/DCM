@@ -7,7 +7,7 @@ jest.mock('../../repositories/definitions/UserRepo');
 jest.mock('../../repositories/definitions/ProjectRepo');
 jest.mock('../../repositories/definitions/ComponentRepo');
 
-const { AccessToken, RefreshToken } = require('../../authentication');
+const { AccessToken, RefreshToken, Tokens } = require('../../authentication');
 const { UserRepo } = require('../../repositories');
 const AuthenticationService = require('../../services/AuthenticationService');
 
@@ -21,11 +21,7 @@ describe('spec of Authorization Service', () => {
     it('should success to login', async () => {
         const tokens = await AuthenticationService.login('asdf', 'qwer');
         
-        const expected_tokens = {
-            access_token: sample_access_token,
-            refresh_token: sample_refresh_token
-        };
-
+        const expected_tokens = new Tokens([sample_access_token, sample_refresh_token]);
         expect(tokens).toEqual(expected_tokens);
     });
     it('should fail to login', async () => {
