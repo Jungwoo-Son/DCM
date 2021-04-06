@@ -26,6 +26,7 @@ mock.findById = jest
         return project[0];
     });
 
+mock.belongsToMany = jest.fn();
 mock.hasMany = jest.fn();
 mock.belongsTo = jest.fn();
 

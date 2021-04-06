@@ -27,6 +27,8 @@ mock.findById = jest
         const same_id_users = mocking_user_datas.filter((user) => user.getId() === id);
         return same_id_users[0];
     });
+    
+mock.belongsToMany = jest.fn();
 mock.hasMany = jest.fn();
 mock.belongsTo = jest.fn();
 

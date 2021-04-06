@@ -25,6 +25,7 @@ mock.create = jest.fn()
         mocking_component_datas.push(new_component);
     });
 
+mock.belongsToMany = jest.fn();
 mock.hasMany = jest.fn();
 mock.belongsTo = jest.fn();
 
