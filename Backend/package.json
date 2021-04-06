@@ -8,7 +8,8 @@
     "test-authentication": "jest specs/Authentication.spec.js",
     "test-controller": "jest specs/controllers/",
     "test-service": "jest specs/services/",
-    "test-db-integration": "jest specs/repositories"
+    "test-db-integration": "jest specs/repositories",
+    "cover": "jest specs/ --coverage"
   },
   "keywords": [],
   "author": "",
