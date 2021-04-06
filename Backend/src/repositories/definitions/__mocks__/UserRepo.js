@@ -1,4 +1,6 @@
 const { UserBuilder } = require('../../../models/User');
+const ProjectRepo = require('../ProjectRepo');
+const UserProjectRepo = require('../UserProjectRepo');
 
 const mock = {};
 let mocking_user_datas;
@@ -26,6 +28,19 @@ mock.findById = jest
     .mockImplementation((id) => {
         const same_id_users = mocking_user_datas.filter((user) => user.getId() === id);
         return same_id_users[0];
+    });
+mock.findByIdWithProjects = jest
+    .fn()
+    .mockImplementation((id) => {
+        const same_id_users = mocking_user_datas.filter((user) => user.getId() === id);
+        const user = same_id_users[0];
+        
+        UserProjectRepo.findAllUserProject().forEach((user_project) => {
+            if (user_project.user_id == user.getId()) {
+                user.addProject(ProjectRepo.findById(user_project.project_id));
+            }
+        });
+        return user;
     });
     
 mock.belongsToMany = jest.fn();
