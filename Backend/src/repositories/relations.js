@@ -16,4 +16,5 @@ module.exports = {
     UserRepo,
     ProjectRepo,
     ComponentRepo,
+    UserProjectRepo
 }
