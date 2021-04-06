@@ -13,7 +13,7 @@ ProjectControllers.createProject = async (res, req) => {
 ProjectControllers.getProject = async (res, req) => {
     const project_id = res.params.id;
     const project = await ProjectService.getProjectById(project_id);
-    req.send(project);
+    return project
 };
 
 module.exports = ProjectControllers;

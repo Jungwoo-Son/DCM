@@ -7,7 +7,7 @@ ComponentContollers.getAllComponentOfTheProject = async (req, res, next) => {
     const project_id = req.params.id;
 
     const components = await ComponentService.getComponentsOfTheProject(project_id);
-    res.send(components);
+    return components;
 };
 ComponentContollers.createComponent = async (req, res, next) => {
     const project_id = req.params.id;
