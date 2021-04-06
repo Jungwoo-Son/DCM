@@ -18,8 +18,8 @@ describe('spec of UserController', () => {
     it('should get project', async () => {
         const req = new RequestBuilder().setParams({id: 10}).build();
         const res = new Response;
-        await ProjectControllers.getProject(req, res);
-        expect(res.result).toEqual({
+        const result = await ProjectControllers.getProject(req, res);
+        expect(result.toJSON()).toEqual({
             id: 10,
             name: '프로젝트1',
         });

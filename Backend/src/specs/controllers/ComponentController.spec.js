@@ -19,9 +19,9 @@ describe('spec of UserController', () => {
     it('should get all components of the project', async () => {
         const req = new RequestBuilder().setParams({id: 10}).build();
         const res = new Response;
-        await ComponentControllers.getAllComponentOfTheProject(req, res);
+        const results = await ComponentControllers.getAllComponentOfTheProject(req, res);
         
-        expect(res.result).toEqual([
+        expect(results.map((result) => result.toJSON())).toEqual([
             {
                 id: 10,
                 name: '요소1',

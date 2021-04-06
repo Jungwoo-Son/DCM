@@ -18,8 +18,8 @@ describe('spec of UserController', () => {
     it('should get user', async () => {
         const req = new RequestBuilder().setParams({id: 'asdf'}).build();
         const res = new Response;
-        await UserControllers.getUser(req, res);
-        expect(res.result).toEqual({
+        const result = await UserControllers.getUser(req, res);
+        expect(result.toJSON()).toEqual({
             id: 'asdf',
             name: '홍길동',
             contact: '010-1234-5678'

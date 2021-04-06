@@ -28,8 +28,8 @@ describe('spec of Authentication Controller', () => {
     it('should success to login', async () => {
         const req = new RequestBuilder().setBody({id: 'asdf', pw: 'qwer'}).build();
         const res = new Response;
-        await AuthenticationControllers.login(req, res);
-        expect(res.result).toEqual({
+        const result = await AuthenticationControllers.login(req, res);
+        expect(result.toJSON()).toEqual({
             access_token: sample_stringed_access_token,
             refresh_token: sample_stringed_refresh_token
         });
@@ -37,9 +37,9 @@ describe('spec of Authentication Controller', () => {
     it('should issue a new access token from refresh token', async () => {
         const req = new RequestBuilder().setBody({refresh_token: sample_stringed_refresh_token}).build();
         const res = new Response;
-        await AuthenticationControllers.refresh(req, res);
+        const result = await AuthenticationControllers.refresh(req, res);
 
-        expect(res.result).toEqual({
+        expect(result.toJSON()).toEqual({
             access_token: sample_stringed_access_token
         });
     });
