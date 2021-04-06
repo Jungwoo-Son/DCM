@@ -16,6 +16,11 @@ class UserService {
         const user = await UserRepo.findById(id);
         return user;
     }
+
+    static async getProjectsOfUser(id) {
+        const user = await UserRepo.findByIdWithProjects(id);
+        return user.getProjects();
+    }
 }
 
 module.exports = UserService;
