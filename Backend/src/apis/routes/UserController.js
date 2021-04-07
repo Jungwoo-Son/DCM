@@ -13,5 +13,11 @@ controllers.getProjectsOfUser = async (req, res) => {
 
     return projects;
 };
+controllers.participateProject = async (req, res) => {
+    const user_id = req.params.id;
+    const project_id = req.body.project;
+
+    await UserService.participateProject(user_id, project_id);
+};
 
 module.exports = controllers;
