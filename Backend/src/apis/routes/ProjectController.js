@@ -10,8 +10,8 @@ ProjectControllers.createProject = async (res, req) => {
     req.send();
 };
 
-ProjectControllers.getProject = async (res, req) => {
-    const project_id = res.params.id;
+ProjectControllers.getProject = async (req, res) => {
+    const project_id = req.params.id;
     const project = await ProjectService.getProjectById(project_id);
     return project
 };
