@@ -1,5 +1,5 @@
 const { UserBuilder } = require('../models/User');
-const { UserRepo } = require('../repositories');
+const { UserRepo, UserProjectRepo } = require('../repositories');
 
 
 class UserService {
@@ -20,6 +20,10 @@ class UserService {
     static async getProjectsOfUser(id) {
         const user = await UserRepo.findByIdWithProjects(id);
         return user.getProjects();
+    }
+
+    static async participateProject(user_id, project_id) {
+        await UserProjectRepo.create({user_id, project_id});
     }
 }
 
