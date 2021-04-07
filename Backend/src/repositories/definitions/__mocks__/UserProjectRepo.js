@@ -12,8 +12,14 @@ mock.findAllUserProject = jest
     .mockImplementation(() =>  {
         return mocking_user_project_datas;
     });
+mock.findAll = mock.findAllUserProject;
 
-    
+mock.create = jest
+    .fn()
+    .mockImplementation((user_project) => {
+        mocking_user_project_datas.push(user_project);
+    });
+
 const repo = {};
 repo.belongsToMany = jest.fn();
 repo.hasMany = jest.fn();
