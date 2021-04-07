@@ -1,10 +1,11 @@
-const { sequelize } = require('../../loaders/database');
-const { Model, DataTypes } = require("sequelize");
 const { ComponentBuilder, Component } = require('../../models/Component');
+const Repo = require('./SequelizeRepo/Component');
 
-class ComponentRepo extends Model {
+
+class ComponentRepo {
+    static repo = Repo;
     static async findByProjectId(project_id, transaction) {
-        const sequelize_components = await this.findAll({
+        const sequelize_components = await this.repo.findAll({
             where: {
                 project_id
             },
@@ -15,7 +16,7 @@ class ComponentRepo extends Model {
         return components;
     }
     static async findByUserId(user_id, transaction) {
-        const sequelize_components = await this.findAll({
+        const sequelize_components = await this.repo.findAll({
             where: {
                 manager: user_id
             },
@@ -26,12 +27,12 @@ class ComponentRepo extends Model {
         return components;
     }
     static async findById(id, transaction) {
-        const sequelize_component = await this.findByPk(id);
+        const sequelize_component = await this.repo.findByPk(id);
         const component = convertSequelizeModelToModel(sequelize_component);
         return component;
     }
     static async create(component, transaction) {
-        await super.create({
+        await this.repo.create({
             name: component.getName(),
             manager: component.getManagerId(),
             project_id: component.getProjectId(),
@@ -45,28 +46,5 @@ function convertSequelizeModelToModel(sequelize_component) {
         .setId(sequelize_component.id)
         .build();
 }
-ComponentRepo.init({
-    id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-    },
-    name: {
-        type: DataTypes.STRING(30),
-        allowNull: false,
-    },
-    manager: {
-        type: DataTypes.STRING(20),
-        allowNull: false,
-    },
-    project_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-    }
-}, {
-    sequelize,
-    tableName: 'component',
-});
 
 module.exports = ComponentRepo;

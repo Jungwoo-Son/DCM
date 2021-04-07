@@ -1,24 +1,24 @@
-const { sequelize } = require('../../loaders/database');
-const { Model, DataTypes } = require("sequelize");
 const { UserBuilder } = require('../../models/User');
 const { ProjectBuilder } = require('../../models/Project');
 const ProjectRepo = require('./ProjectRepo');
+const Repo = require('./SequelizeRepo/User');
 
-class UserRepo extends Model {
+class UserRepo {
+    static repo = Repo;
     static async findAllUsers(transaction) {
-        const sequelize_users = await super.findAll({transaction});
+        const sequelize_users = await this.repo.findAll({transaction});
         const users = sequelize_users.map((sequelize_user) => {
             return convertSequelizeModelToModel(sequelize_user);
         });
         return users;
     }
     static async findById(id, transaction) {
-        const sequelize_user = await super.findByPk(id, {transaction});
+        const sequelize_user = await this.repo.findByPk(id, {transaction});
         const user = convertSequelizeModelToModel(sequelize_user);
         return user;
     }
     static async create(user, transaction) {
-        await super.create({
+        await this.repo.create({
             id: user.getId(),
             name: user.getName(),
             contact: user.getContact(),
@@ -28,8 +28,8 @@ class UserRepo extends Model {
         });
     }
     static async findByIdWithProjects(id, transaction) {
-        const sequelize_user = await super.findByPk(id, {
-            include: { model: ProjectRepo, as: 'projects' },
+        const sequelize_user = await this.repo.findByPk(id, {
+            include: { model: ProjectRepo.repo, as: 'projects' },
             transaction
         });
 
@@ -52,27 +52,5 @@ function convertSequelizeProjectToModel(sequelize_project) {
         .setId(sequelize_project.id)
         .build();
 }
-UserRepo.init({
-    id: {
-        type: DataTypes.STRING(30),
-        allowNull: false,
-        primaryKey: true,
-    },
-    name: {
-        type: DataTypes.STRING(8),
-        allowNull: false,
-    },
-    contact: {
-        type: DataTypes.STRING(80),
-        allowNull: false
-    },
-    pw: {
-        type: DataTypes.CHAR(128),
-        allowNull: false,
-    },
-}, {
-    sequelize,
-    tableName: 'user',
-});
 
 module.exports = UserRepo;

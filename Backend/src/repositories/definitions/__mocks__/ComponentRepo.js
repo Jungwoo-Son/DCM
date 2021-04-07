@@ -25,8 +25,11 @@ mock.create = jest.fn()
         mocking_component_datas.push(new_component);
     });
 
-mock.belongsToMany = jest.fn();
-mock.hasMany = jest.fn();
-mock.belongsTo = jest.fn();
+const repo = {};
+repo.belongsToMany = jest.fn();
+repo.hasMany = jest.fn();
+repo.belongsTo = jest.fn();
+
+mock.repo = repo;
 
 module.exports = mock;

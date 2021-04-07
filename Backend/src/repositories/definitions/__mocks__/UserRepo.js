@@ -9,8 +9,6 @@ mock.mockClear = jest.fn().mockImplementation(() => {
     mocking_user_datas = [ new UserBuilder('asdf', '홍길동', '010-1234-5678').setPw('qwer').build() ];
     mock.create.mockClear();
     mock.findAllUsers.mockClear();
-    mock.hasMany.mockClear();
-    mock.belongsTo.mockClear();
 });
 
 mock.create = jest
@@ -43,8 +41,11 @@ mock.findByIdWithProjects = jest
         return user;
     });
     
-mock.belongsToMany = jest.fn();
-mock.hasMany = jest.fn();
-mock.belongsTo = jest.fn();
+const repo = {};
+repo.belongsToMany = jest.fn();
+repo.hasMany = jest.fn();
+repo.belongsTo = jest.fn();
+
+mock.repo = repo;
 
 module.exports = mock;
