@@ -16,4 +16,10 @@ ProjectControllers.getProject = async (res, req) => {
     return project
 };
 
+ProjectControllers.getMembersOfProject = async (req, res) => {
+    const project_id = req.params.id;
+    const members = await ProjectService.getMembersOfProject(project_id);
+    return members;
+};
+
 module.exports = ProjectControllers;
