@@ -36,4 +36,11 @@ describe('spec of UserController', () => {
             name: '프로젝트1'
         }]);
     });
+    it('should make a user participate the project', async () => {
+        const req = new RequestBuilder().setParams({id: 'asdf'}).setBody({project: 14}).build();
+        await UserControllers.participateProject(req);
+
+        const results = await UserProjectRepo.findAll();
+        expect(results).toContainEqual({ user_id: 'asdf', project_id: 14});
+    });
 });
