@@ -1,8 +1,9 @@
 jest.mock('../../repositories/definitions/UserRepo');
 jest.mock('../../repositories/definitions/ProjectRepo');
 jest.mock('../../repositories/definitions/ComponentRepo');
+jest.mock('../../repositories/definitions/UserProjectRepo')
 const { ProjectBuilder } = require('../../models/Project');
-const { UserRepo, ProjectRepo, ComponentRepo} = require('../../repositories');
+const { UserRepo, ProjectRepo, ComponentRepo, UserProjectRepo} = require('../../repositories');
 const ProjectControllers = require('../../apis/routes/ProjectController');
 
 const RequestBuilder = require('./FakeRequest');
@@ -14,6 +15,7 @@ describe('spec of UserController', () => {
         UserRepo.mockClear();
         ProjectRepo.mockClear();
         ComponentRepo.mockClear();
+        UserProjectRepo.mockClear();
     });
     it('should get project', async () => {
         const req = new RequestBuilder().setParams({id: 10}).build();
@@ -31,5 +33,15 @@ describe('spec of UserController', () => {
         const projects = await ProjectRepo.findAllProjects();
         const expected_new_project = new ProjectBuilder('프로젝트2').build();
         expect(projects.map((project) => project.valueOf())).toContainEqual(expected_new_project.valueOf());
+    });
+    it('should get members of the project', async () => {
+        const req = new RequestBuilder().setParams({id: 10}).build();
+        const results = await ProjectControllers.getMembersOfProject(req);
+        
+        expect(results.map((result) => result.toJSON())).toEqual([{
+            id: 'asdf',
+            name: '홍길동',
+            contact: '010-1234-5678'
+        }]);
     });
 });
