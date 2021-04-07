@@ -30,4 +30,10 @@ describe('spec of UserService', () => {
         const projects = await UserService.getProjectsOfUser('asdf');
         expect(projects).toEqual([new ProjectBuilder('프로젝트1').setId(10).build()]);
     });
+    it('should make a user participate the project', async () => {
+        await UserService.participateProject('asdf', 14);
+
+        const user_projects = await UserProjectRepo.findAll();
+        expect(user_projects).toContainEqual({user_id: 'asdf', project_id: 14});
+    });
 });
