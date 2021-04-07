@@ -1,4 +1,5 @@
 const { ProjectBuilder } = require('../../../models/Project');
+const UserProjectRepo = require('../UserProjectRepo');
 
 let mocking_project_datas;
 const mock = {};
@@ -24,6 +25,20 @@ mock.findById = jest
     .mockImplementation((id) => {
         const project = mocking_project_datas.filter((project) => project.getId() == id);
         return project[0];
+    });
+mock.findByIdWithMember = jest
+    .fn()
+    .mockImplementation((id) => {
+        const UserRepo = require('../UserRepo');
+        const project = mocking_project_datas.filter((project) => project.getId() == id)[0];
+
+        UserProjectRepo.findAllUserProject().forEach((user_project) => {
+            if (user_project.project_id == project.getId()) {
+                project.addMember(UserRepo.findById(user_project.user_id));
+            }
+        });
+        return project;
+
     });
 
 const repo = {};
