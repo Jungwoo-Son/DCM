@@ -3,7 +3,7 @@ const { sequelize } = require('../../loaders/database');
 const { ProjectBuilder } = require('../../models/Project');
 const { UserBuilder } = require('../../models/User');
 
-let simple_db_status = [new ProjectBuilder('프로젝트1').setId(10).build()];
+let simple_db_status = [new ProjectBuilder('프로젝트1').setId(10).build(), new ProjectBuilder('프로젝트5').setId(14).build()];
 
 describe('spec of ProjectRepo', () => {
     let transaction;
