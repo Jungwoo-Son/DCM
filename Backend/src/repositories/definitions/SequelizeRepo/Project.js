@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require("sequelize");
 const { sequelize } = require('../../../loaders/database');
 
-class Repo extends Model { }
+class ProjectRepo extends Model { }
 
-Repo.init({
+ProjectRepo.init({
     id: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -19,4 +19,4 @@ Repo.init({
     tableName: 'project',
 });
 
-module.exports = Repo;
+module.exports = ProjectRepo;

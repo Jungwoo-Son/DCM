@@ -1,8 +1,8 @@
 const { Model, DataTypes } = require("sequelize");
 const { sequelize } = require('../../../loaders/database');
 
-class Repo extends Model {}
-Repo.init({
+class UserRepo extends Model {}
+UserRepo.init({
     id: {
         type: DataTypes.STRING(30),
         allowNull: false,
@@ -25,4 +25,4 @@ Repo.init({
     tableName: 'user',
 });
 
-module.exports = Repo;
+module.exports = UserRepo;

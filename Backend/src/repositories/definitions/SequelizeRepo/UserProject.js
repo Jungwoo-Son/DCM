@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require("sequelize");
 const { sequelize } = require('../../../loaders/database');
 
-class Repo extends Model { }
+class UserProjectRepo extends Model { }
 
-Repo.init({
+UserProjectRepo.init({
     user_id: {
         type: DataTypes.STRING(30),
         allowNull: false
@@ -17,4 +17,4 @@ Repo.init({
     tableName: 'user_project',
 });
 
-module.exports = Repo;
+module.exports = UserProjectRepo;
