@@ -1,15 +1,17 @@
 jest.mock('../../repositories/definitions/UserRepo');
 jest.mock('../../repositories/definitions/ProjectRepo');
 jest.mock('../../repositories/definitions/ComponentRepo');
+jest.mock('../../repositories/definitions/DependencyRepo')
 
 const { ComponentBuilder } = require('../../models/Component');
-const { ComponentRepo } = require('../../repositories');
+const { ComponentRepo, DependencyRepo } = require('../../repositories');
 const ComponentService = require('../../services/ComponentService');
 
 
 describe('spec of UserService', () => {
     beforeEach(() => {
         ComponentRepo.mockClear();  
+        DependencyRepo.mockClear();
     });
     it('should get all component in the project', async () => {
         const project_id = 10;
@@ -33,5 +35,12 @@ describe('spec of UserService', () => {
         const components = await ComponentService.getDependenciesOfTheComponent(project_id, component_id);
         
         expect(components).toEqual([new ComponentBuilder('요소3', 'asdf', 10).setId(12).build()]);
+    });
+    it('should create a new dependcy between the comopnents', async () => {
+        await ComponentService.createDependency(12, 10);
+
+        const dependencies = await DependencyRepo.findAll();
+
+        expect(dependencies).toContainEqual({subject: 12, target: 10});
     });
 });
