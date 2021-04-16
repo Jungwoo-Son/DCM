@@ -27,4 +27,11 @@ describe('spec of UserService', () => {
         const components = ComponentRepo.findByProjectId(project_id);
         expect(components.map((component) => component.valueOf())).toContainEqual(new_component.valueOf());
     });
+    it('should get all dependencies of the component', async () => {
+        const project_id = 10;
+        const component_id = 10;
+        const components = await ComponentService.getDependenciesOfTheComponent(project_id, component_id);
+        
+        expect(components).toEqual([new ComponentBuilder('요소3', 'asdf', 10).setId(12).build()]);
+    });
 });
