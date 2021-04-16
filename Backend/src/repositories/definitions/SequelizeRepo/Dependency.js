@@ -7,11 +7,13 @@ class Repo extends Model { }
 Repo.init({
     subject: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        primaryKey: true
     },
     target: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        primaryKey: true
     }
 }, {
     sequelize,
