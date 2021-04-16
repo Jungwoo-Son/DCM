@@ -2,7 +2,7 @@ const { ComponentRepo } = require('../../repositories');
 const { sequelize } = require('../../loaders/database');
 const { ComponentBuilder } = require('../../models/Component');
 
-let simple_db_status = [new ComponentBuilder('요소1', 'asdf', 10).setId(10).build()];
+let simple_db_status = [new ComponentBuilder('요소1', 'asdf', 10).setId(10).build(), new ComponentBuilder('요소3', 'asdf', 10).setId(12).build()];
 
 describe('spec of ProjectRepo', () => {
     let transaction;
@@ -32,5 +32,11 @@ describe('spec of ProjectRepo', () => {
         await ComponentRepo.create(new_component, transaction);
         const components = await ComponentRepo.findByProjectId(10, transaction); 
         expect(components.map((component) => component.valueOf())).toContainEqual(new_component.valueOf());
+    });
+    it('should find by id with dependencies', async () => {
+        const component = await ComponentRepo.findByIdWithDependencies(10, transaction);
+        const dependencies = component.getDependencies();
+
+        expect(dependencies).toEqual([new ComponentBuilder('요소3', 'asdf', 10).setId(12).build()]);
     });
 });
