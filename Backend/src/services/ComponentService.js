@@ -1,4 +1,4 @@
-const { ComponentRepo } = require('../repositories');
+const { ComponentRepo, DependencyRepo } = require('../repositories');
 
 class ProjectService {
     constructor() {
@@ -15,6 +15,9 @@ class ProjectService {
     static async getDependenciesOfTheComponent(project_id, component_id) {
         const components = await ComponentRepo.findByIdWithDependencies(component_id);
         return components.getDependencies();
+    }
+    static async createDependency(subject, target) {
+        await DependencyRepo.create(subject, target);
     }
 }
 
