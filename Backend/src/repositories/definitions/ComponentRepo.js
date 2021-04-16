@@ -40,6 +40,16 @@ class ComponentRepo {
             transaction,
         });
     }
+    static async findByIdWithDependencies(id, transaction) {
+        const sequelize_component = await this.repo.findByPk(id, {
+            include: { model: this.repo, as: 'dependencies' },
+            transaction
+        });
+        const component = convertSequelizeModelToModel(sequelize_component);
+        component.dependencies = sequelize_component.dependencies.map((component) => convertSequelizeModelToModel(component));
+        
+        return component;
+    }
 }
 function convertSequelizeModelToModel(sequelize_component) {
     return new ComponentBuilder(sequelize_component.name, sequelize_component.manager, sequelize_component.project_id)
