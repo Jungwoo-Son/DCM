@@ -10,6 +10,12 @@ class FakeResponse {
             this.result = object.toJSON();
         }
     }
+    status(s) {
+        this.s = s;
+    }
+    getStatus() {
+        return this.s;
+    }
 }
 
 module.exports = FakeResponse;
