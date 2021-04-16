@@ -17,5 +17,9 @@ ComponentContollers.createComponent = async (req, res, next) => {
     await ComponentService.createNewComponent(component);
     res.send();
 };
+ComponentContollers.getAllDependenciesOfTheComponent = async (req) => {
+    const { project_id, component_id } = req.params;
+    return await ComponentService.getDependenciesOfTheComponent(project_id, component_id);
+};
 
 module.exports = ComponentContollers;
