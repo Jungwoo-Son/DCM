@@ -2,9 +2,9 @@ const { Model, DataTypes } = require("sequelize");
 const { sequelize } = require("../../../loaders/database");
 
 
-class DependencyRepo extends Model { }
+class Repo extends Model { }
 
-DependencyRepo.init({
+Repo.init({
     subject: {
         type: DataTypes.INTEGER,
         allowNull: false
@@ -18,4 +18,4 @@ DependencyRepo.init({
     tableName: 'dependency'
 });
 
-module.exports = DependencyRepo;
+module.exports = Repo;
