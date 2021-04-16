@@ -21,5 +21,12 @@ ComponentContollers.getAllDependenciesOfTheComponent = async (req) => {
     const { project_id, component_id } = req.params;
     return await ComponentService.getDependenciesOfTheComponent(project_id, component_id);
 };
+ComponentContollers.createDependency = async (req, res) => {
+    const { project_id, component_id:subject } = req.params;
+    const target = req.body.target;
+
+    await ComponentService.createDependency(subject, target);
+    res.status(201);
+};
 
 module.exports = ComponentContollers;
