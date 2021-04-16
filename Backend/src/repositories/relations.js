@@ -20,5 +20,6 @@ module.exports = {
     UserRepo,
     ProjectRepo,
     ComponentRepo,
-    UserProjectRepo
+    UserProjectRepo,
+    DependencyRepo
 }
