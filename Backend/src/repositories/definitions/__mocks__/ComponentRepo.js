@@ -24,7 +24,13 @@ mock.create = jest.fn()
         const new_component = new ComponentBuilder(component.getName(), component.getManagerId(), component.getProjectId()).setId(11).build();
         mocking_component_datas.push(new_component);
     });
-
+mock.findByIdWithDependencies = jest.fn()
+    .mockImplementation(id => {
+        if(id == 10) {
+            mocking_component_datas[0].addDependency(new ComponentBuilder('요소3', 'asdf', 10).setId(12).build());
+            return mocking_component_datas[0];
+        }
+    });
 const repo = {};
 repo.belongsToMany = jest.fn();
 repo.hasMany = jest.fn();
