@@ -1,14 +1,16 @@
 jest.mock('../../repositories/definitions/UserRepo');
 jest.mock('../../repositories/definitions/ProjectRepo');
 jest.mock('../../repositories/definitions/ComponentRepo');
+jest.mock('../../repositories/definitions/DependencyRepo');
 const { ComponentBuilder } = require('../../models/Component');
-const { UserRepo, ProjectRepo, ComponentRepo} = require('../../repositories');
+const { UserRepo, ProjectRepo, ComponentRepo, DependencyRepo} = require('../../repositories');
 
 const ComponentControllers = require('../../apis/routes/ComponentController');
 
 const RequestBuilder = require('./FakeRequest');
 const Response = require('./FakeResponse');
 const FakeResponse = require('./FakeResponse');
+const ComponentContollers = require('../../apis/routes/ComponentController');
 
 
 describe('spec of UserController', () => {
@@ -16,6 +18,7 @@ describe('spec of UserController', () => {
         UserRepo.mockClear();
         ProjectRepo.mockClear();
         ComponentRepo.mockClear();
+        DependencyRepo.mockClear();
     });
     it('should get all components of the project', async () => {
         const req = new RequestBuilder().setParams({id: 10}).build();
@@ -57,6 +60,18 @@ describe('spec of UserController', () => {
             manager: 'asdf',
             project: 10
         }]);
+    });
+    it('should create dependency', async () => {
+        const req = new RequestBuilder()
+            .setBody({target: 10})
+            .setParams({project_id: 10, component_id: 12})
+            .build();
+        const res = new FakeResponse;
+        await ComponentContollers.createDependency(req, res);
+
+        const dependencies = await DependencyRepo.findAll();
+        expect(dependencies).toContainEqual({subject: 12, target: 10});
+        expect(res.getStatus()).toBe(201);
     });
 });
 
