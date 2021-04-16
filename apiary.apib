@@ -231,8 +231,7 @@ DCM의 백엔드 api를 제공합니다.
 
 ### Create a new dependecy between components [POST]
 + Attributes
-    + subject (number, required) - 의존 주체 구성 요소 아이디 
-    + object (number, required) - 의존 대상 구성 요소 아이디
+    + target (number, required) - 의존 대상 구성 요소 아이디
     
 + Request (application/json)
     + header
@@ -242,8 +241,7 @@ DCM의 백엔드 api를 제공합니다.
     + Body
     
             {
-                "subject": 32,
-                "object": 65,
+                "target": 65,
             }
             
 + Response 200 (application/json)
