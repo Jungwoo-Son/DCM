@@ -73,6 +73,16 @@ describe('spec of UserController', () => {
         expect(dependencies).toContainEqual({subject: 12, target: 10});
         expect(res.getStatus()).toBe(201);
     });
+    it('should delete dependency', async () => {
+        const req = new RequestBuilder()
+            .setBody({target: 12})
+            .setParams({project_id: 10, component_id: 10})
+            .build();
+        await ComponentControllers.deleteDependency(req);
+
+        const dependencies = await DependencyRepo.findAll();
+        expect(dependencies).toEqual([]);
+    });
 });
 
 
