@@ -24,4 +24,10 @@ describe('spec of UserRepo', () => {
         const dependencies = await DependencyRepo.findAll(transaction);
         expect(dependencies).toContainEqual({subject: 12, target: 10});
     });
+    it('should delete a dependency', async () => {
+        await DependencyRepo.delete(10, 12, transaction);
+
+        const dependencies = await DependencyRepo.findAll(transaction);
+        expect(dependencies).toEqual([]);
+    });
 });
