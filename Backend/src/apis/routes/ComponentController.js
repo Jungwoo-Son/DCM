@@ -28,5 +28,11 @@ ComponentContollers.createDependency = async (req, res) => {
     await ComponentService.createDependency(subject, target);
     res.status(201);
 };
+ComponentContollers.deleteDependency = async (req) => {
+    const { project_id, component_id: subject} = req.params;
+    const target = req.body.target;
+    
+    await ComponentService.deleteDependency(subject, target);
+};
 
 module.exports = ComponentContollers;
