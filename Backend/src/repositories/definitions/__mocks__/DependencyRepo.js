@@ -17,6 +17,11 @@ mock.create = jest
     .mockImplementation((subject, target) => {
         mocking_project_datas.push({ subject, target });
     });
+mock.delete = jest
+    .fn()
+    .mockImplementation((subject, target) => {
+        mocking_project_datas = mocking_project_datas.filter(dependency => dependency.subject !== subject || dependency.target !== target);
+    });
 
 
 const repo = {};
