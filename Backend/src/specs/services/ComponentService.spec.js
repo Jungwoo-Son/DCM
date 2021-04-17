@@ -43,4 +43,11 @@ describe('spec of UserService', () => {
 
         expect(dependencies).toContainEqual({subject: 12, target: 10});
     });
+    it('should delete a dependency between components', async () => {
+        await ComponentService.deleteDependency(10, 12);
+
+        const dependencies = await DependencyRepo.findAll();
+
+        expect(dependencies).toEqual([]);
+    });
 });
