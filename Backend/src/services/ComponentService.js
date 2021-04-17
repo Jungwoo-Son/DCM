@@ -19,6 +19,9 @@ class ProjectService {
     static async createDependency(subject, target) {
         await DependencyRepo.create(subject, target);
     }
+    static async deleteDependency(subject, target) {
+        await DependencyRepo.delete(subject, target);
+    }
 }
 
 module.exports = ProjectService;
