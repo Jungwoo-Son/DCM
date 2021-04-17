@@ -13,6 +13,12 @@ class DependencyRepo {
     static async create(subject, target, transaction) {
         await this.repo.create({subject, target}, {transaction});
     }
+    static async delete(subject, target, transaction) {
+        await this.repo.destroy({
+            where: {subject, target},
+            transaction
+        });
+    }
 }
 
 module.exports = DependencyRepo;
