@@ -1,7 +1,7 @@
 # This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
 # For more information see: https://help.github.com/actions/language-and-framework-guides/publishing-nodejs-packages
 
-name: CICD
+name: BackendCICD
 
 on:
   push:
@@ -31,6 +31,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     
+    - name: Go Backend workspace
+      run: cd ./Backend
+
     - name: Dependencies Installation
       run: npm ci
     
@@ -46,6 +49,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      
+      - name: Go Backend workspace
+        run: cd ./Backend
     
       - name: docker image build
         run: docker build -t yeoul/DCM:latest .
