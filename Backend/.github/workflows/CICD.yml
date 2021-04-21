@@ -1,0 +1,58 @@
+# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
+# For more information see: https://help.github.com/actions/language-and-framework-guides/publishing-nodejs-packages
+
+name: CICD
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  CI:
+    env:
+      PORT: ${{ secrets.PORT }}
+      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      DB_DATABASE: ${{ secrets.DB_DATABASE }}
+      DB_HOST: ${{ secrets.DB_HOST }}
+      DB_USERNAME: ${{ secrets.DB_USERNAME }}
+      TOKEN_SECRET: ${{ secrets.TOKEN_SECRET }}
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.7.0]
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    
+    - name: Dependencies Installation
+      run: npm ci
+    
+    - name: test
+      run: npm run cover
+
+  CD:
+    runs-on: ubuntu-latest
+    env:
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+    needs: CI
+
+    steps:
+      - uses: actions/checkout@v2
+    
+      - name: docker image build
+        run: docker build -t yeoul/DCM:latest .
+    
+      - name: upload to registry
+        uses: elgohr/Publish-Docker-Github-Action@master
+        with:
+          name: yeoul/DCM:latest
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
