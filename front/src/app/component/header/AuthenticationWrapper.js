@@ -1,10 +1,15 @@
+import { Link } from "react-router-dom";
 import * as S from "./style";
-const AuthenticationWrapper = () => {
+const AuthenticationWrapper = ({ linkToLogin, linkToSignUp }) => {
   return (
     <S.AuthenticationWrapper>
-      <S.Login>로그인</S.Login>
+      <Link to={linkToLogin}>
+        <S.Login>로그인</S.Login>
+      </Link>
       <S.Divider />
-      <S.SingUp>회원가입</S.SingUp>
+      <Link to={linkToSignUp}>
+        <S.SingUp>회원가입</S.SingUp>
+      </Link>
     </S.AuthenticationWrapper>
   );
 };
