@@ -1,7 +1,7 @@
 import Introduction from "../../component/introduction/Introduction";
 
 const IntroductionContainer = () => {
-  return <Introduction></Introduction>;
+  return <Introduction linkToSignUp="/signup"></Introduction>;
 };
 
 export default IntroductionContainer;

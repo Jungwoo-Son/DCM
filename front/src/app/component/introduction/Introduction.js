@@ -1,7 +1,8 @@
+import { Link } from "react-router-dom";
 import * as S from "./style";
 import Image from "../../../assets/DescriptionImage.png";
 
-const Introduction = () => {
+const Introduction = ({ linkToSignUp }) => {
   return (
     <S.Introduction>
       <S.DescriptionImg src={Image} />
@@ -12,7 +13,9 @@ const Introduction = () => {
         프로젝트에서 복잡한 구성요소간 관계와 담당자를 빠르게 관리할 수
         있습니다.
       </S.SmallDescription>
-      <S.SignUpBtn>회원가입</S.SignUpBtn>
+      <Link to={linkToSignUp}>
+        <S.SignUpBtn>회원가입</S.SignUpBtn>
+      </Link>
     </S.Introduction>
   );
 };
