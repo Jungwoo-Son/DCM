@@ -41,4 +41,8 @@ export const SignUpBtn = styled.button`
   border-radius: 1.125rem;
   background-color: #ffffff;
   box-shadow: 0 6px 6px rgba(0, 0, 0, 0.16);
+
+  font-size: 1.25rem;
+  color: #00bfff;
+  font-weight: bold;
 `;
