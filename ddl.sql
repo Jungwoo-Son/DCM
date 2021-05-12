@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS component (
     PRIMARY KEY(id)
 );
 
-CREATE TABLE IF NOT EXISTS dependencies (
+CREATE TABLE IF NOT EXISTS dependency (
 	subject		INT NOT NULL,
     target	INT NOT NULL,
     
