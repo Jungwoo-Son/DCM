@@ -1,10 +1,10 @@
-import Header from "../../component/header/Header";
+import HeaderContainer from "../../container/header/HeaderCotainer";
 import IntroductionContainer from "../../container/introduction/IntroductionContainer";
 
 const MainPage = () => {
   return (
     <>
-      <Header />
+      <HeaderContainer />
       <IntroductionContainer />
     </>
   );
