@@ -102,3 +102,6 @@ dist
 
 # TernJS port file
 .tern-port
+
+# 디자인 제거
+.디자인/
