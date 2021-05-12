@@ -45,4 +45,6 @@ export const SignUpBtn = styled.button`
   font-size: 1.25rem;
   color: #00bfff;
   font-weight: bold;
+
+  cursor: pointer;
 `;
