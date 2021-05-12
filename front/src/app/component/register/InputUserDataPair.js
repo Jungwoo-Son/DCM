@@ -1,9 +1,14 @@
 import * as S from "./style";
-const InputUserDataPair = ({ title }) => {
+const InputUserDataPair = ({ name, title, value, setValue }) => {
   return (
     <S.InputUserDataContent>
       <S.InputUserDataTitle>{title}</S.InputUserDataTitle>
-      <S.InputUserData placeholder={title}></S.InputUserData>
+      <S.InputUserData
+        name={name}
+        placeholder={title}
+        value={value}
+        onChange={setValue}
+      ></S.InputUserData>
     </S.InputUserDataContent>
   );
 };

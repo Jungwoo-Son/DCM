@@ -1,16 +1,36 @@
 import InputUserDataPair from "./InputUserDataPair";
 import * as S from "./style";
 
-const Register = () => {
+const Register = ({ userData, setUserData }) => {
   return (
     <S.RegisterContent>
       <S.InputCard>
         <S.InputCardTitle>사용자 정보 입력하기</S.InputCardTitle>
         <S.InputsWrapper>
-          <InputUserDataPair title="ID" />
-          <InputUserDataPair title="PW" />
-          <InputUserDataPair title="사용자 이름" />
-          <InputUserDataPair title="연락처" />
+          <InputUserDataPair
+            name="id"
+            title="ID"
+            value={userData?.id}
+            setValue={setUserData}
+          />
+          <InputUserDataPair
+            name="pw"
+            title="PW"
+            value={userData?.pw}
+            setValue={setUserData}
+          />
+          <InputUserDataPair
+            name="username"
+            title="사용자 이름"
+            value={userData?.username}
+            setValue={setUserData}
+          />
+          <InputUserDataPair
+            name="contact"
+            title="연락처"
+            contact={userData?.contact}
+            setValue={setUserData}
+          />
         </S.InputsWrapper>
         <S.RegisterBtn>회원가입</S.RegisterBtn>
       </S.InputCard>
