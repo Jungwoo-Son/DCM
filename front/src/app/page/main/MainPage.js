@@ -1,5 +1,13 @@
+import Header from "../../component/header/Header";
+import IntroductionContainer from "../../container/introduction/IntroductionContainer";
+
 const MainPage = () => {
-  return <div></div>;
+  return (
+    <>
+      <Header />
+      <IntroductionContainer />
+    </>
+  );
 };
 
 export default MainPage;
