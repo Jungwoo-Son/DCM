@@ -16,3 +16,12 @@ export const register = async (userData) => {
     contact: userData.contact,
   });
 };
+
+export const login = async (id, pw) => {
+  const { data } = await api.post("/login", {
+    id,
+    pw,
+  });
+
+  return data.access_token;
+};
