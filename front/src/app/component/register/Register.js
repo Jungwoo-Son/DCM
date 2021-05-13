@@ -1,7 +1,7 @@
 import InputUserDataPair from "./InputUserDataPair";
 import * as S from "./style";
 
-const Register = ({ userData, setUserData }) => {
+const Register = ({ userData, setUserData, onRegisterBtnClick }) => {
   return (
     <S.RegisterContent>
       <S.InputCard>
@@ -32,7 +32,7 @@ const Register = ({ userData, setUserData }) => {
             setValue={setUserData}
           />
         </S.InputsWrapper>
-        <S.RegisterBtn>회원가입</S.RegisterBtn>
+        <S.RegisterBtn onClick={onRegisterBtnClick}>회원가입</S.RegisterBtn>
       </S.InputCard>
     </S.RegisterContent>
   );
