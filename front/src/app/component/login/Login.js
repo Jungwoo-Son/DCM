@@ -1,5 +1,12 @@
+import LoginInputCard from "./LoginInputCard";
+import * as S from "./style";
+
 const Login = () => {
-  return <div></div>;
+  return (
+    <S.LoginContent>
+      <LoginInputCard />
+    </S.LoginContent>
+  );
 };
 
 export default Login;
