@@ -37,3 +37,7 @@ export const Divider = styled.div`
 export const SingUp = styled.div`
   margin-left: 1.25rem;
 `;
+export const Username = styled.span`
+  font-size: 1rem;
+  font-weight: bold;
+`;
