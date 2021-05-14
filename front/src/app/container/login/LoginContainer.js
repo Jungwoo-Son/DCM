@@ -22,6 +22,7 @@ const LoginContainer = () => {
     try {
       const accessToken = await login(userData.id, userData.pw);
       localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("userId", userData.id);
       history.goBack();
     } catch (e) {
       alert("id 혹은 pw가 올바르지 않습니다.");
