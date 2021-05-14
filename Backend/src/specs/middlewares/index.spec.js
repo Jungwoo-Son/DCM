@@ -19,10 +19,7 @@ describe("미들웨어에 대한 단위 테스트", () => {
 
       const objectified_token = req.auth;
 
-      expect(objectified_token.getUserId()).toBe("1");
-      expect(objectified_token.toString()).toBe(
-        sample_stringified_access_token
-      );
+      expect(objectified_token).toBe("1");
     });
   });
 });
