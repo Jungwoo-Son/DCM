@@ -1,23 +1,23 @@
-const UserService = require('../../services/UserService');
+const UserService = require("../../services/UserService");
 
 const controllers = {};
 
 controllers.getUser = async (req, res, next) => {
-    const user_id = req.params.id;
-    const user = await UserService.getUserById(user_id);
-    return user;
+  const user_id = req.params.id;
+  const user = await UserService.getUserById(user_id);
+  return user;
 };
 controllers.getProjectsOfUser = async (req, res) => {
-    const user_id = req.params.id;
-    const projects = await UserService.getProjectsOfUser(user_id);
+  const user_id = req.params.id;
+  const projects = await UserService.getProjectsOfUser(user_id);
 
-    return projects;
+  return projects;
 };
 controllers.participateProject = async (req, res) => {
-    const user_id = req.params.id;
-    const project_id = req.body.project;
+  const user_id = req.params.id;
+  const project_id = req.body.project;
 
-    await UserService.participateProject(user_id, project_id);
+  await UserService.participateProject(user_id, project_id);
 };
 
 module.exports = controllers;
