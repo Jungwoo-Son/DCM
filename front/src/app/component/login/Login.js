@@ -1,10 +1,14 @@
 import LoginInputCard from "./LoginInputCard";
 import * as S from "./style";
 
-const Login = () => {
+const Login = ({ userData, setUserData, onLoginBtnClick }) => {
   return (
     <S.LoginContent>
-      <LoginInputCard />
+      <LoginInputCard
+        userData={userData}
+        setUserData={setUserData}
+        onLoginBtnClick={onLoginBtnClick}
+      />
     </S.LoginContent>
   );
 };
