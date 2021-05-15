@@ -30,3 +30,8 @@ export const getUser = async (userId) => {
   const { data } = await api.get(`/users/${userId}`);
   return data;
 };
+
+export const getProjectsOfUser = async (userId) => {
+  const { data } = await api.get(`/users/${userId}/projects`);
+  return data;
+};
