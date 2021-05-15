@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import * as S from "./style";
 import Image from "../../../assets/DescriptionImage.png";
+import MainBackground from "../mainBackground/MainBackground";
 
 const Introduction = ({ linkToSignUp }) => {
   return (
-    <S.Introduction>
+    <MainBackground>
       <S.DescriptionImg src={Image} />
       <S.BigDescription>프로젝트 의존성 관리툴</S.BigDescription>
       <S.SmallDescription>
@@ -16,7 +17,7 @@ const Introduction = ({ linkToSignUp }) => {
       <Link to={linkToSignUp}>
         <S.SignUpBtn>회원가입</S.SignUpBtn>
       </Link>
-    </S.Introduction>
+    </MainBackground>
   );
 };
 
