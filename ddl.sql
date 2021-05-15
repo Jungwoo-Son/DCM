@@ -3,7 +3,7 @@ CREATE DATABASE IF NOT EXISTS dcm;
 
 use dcm;
 
-DROP TABLE IF EXISTS dependcies;
+DROP TABLE IF EXISTS dependcy;
 DROP TABLE IF EXISTS user_project;
 DROP TABLE IF EXISTS component;
 DROP TABLE IF EXISTS user;
@@ -41,8 +41,8 @@ CREATE TABLE IF NOT EXISTS dependency (
 	subject		INT NOT NULL,
     target	INT NOT NULL,
     
-    FOREIGN KEY(subject) REFERENCES component(id),
-    FOREIGN KEY(target) REFERENCES component(id),
+    FOREIGN KEY(subject) REFERENCES component(id) ON DELETE CASCADE,
+    FOREIGN KEY(target) REFERENCES component(id) ON DELETE CASCADE,
     PRIMARY KEY(subject, target)
 );
 
