@@ -1,13 +1,13 @@
 import * as S from "./style";
 
-const Project = ({ name }) => {
+const Project = ({ projectData }) => {
   return (
     <S.Project>
       <S.ProjectThumbnailSection>
-        <S.TextProjectThumbnail>{name[0]}</S.TextProjectThumbnail>
+        <S.TextProjectThumbnail>{projectData.name[0]}</S.TextProjectThumbnail>
       </S.ProjectThumbnailSection>
       <S.ProejectNameSection>
-        <S.ProejectName>{name}</S.ProejectName>
+        <S.ProejectName>{projectData.name}</S.ProejectName>
       </S.ProejectNameSection>
     </S.Project>
   );
