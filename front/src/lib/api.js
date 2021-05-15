@@ -25,3 +25,8 @@ export const login = async (id, pw) => {
 
   return data.access_token;
 };
+
+export const getUser = async (userId) => {
+  const { data } = await api.get(`/users/${userId}`);
+  return data;
+};
