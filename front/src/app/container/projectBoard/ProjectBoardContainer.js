@@ -13,7 +13,7 @@ const ProjectBoardContainter = () => {
         const projects = await getProjectsOfUser(userId);
         setProjects(projects);
       })(),
-    [projects.map((project) => project.id)]
+    []
   );
 
   const projectsComponents = projects.map((projectData) => (
